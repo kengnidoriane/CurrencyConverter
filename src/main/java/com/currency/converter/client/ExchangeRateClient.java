@@ -2,6 +2,10 @@ package com.currency.converter.client;
 
 import com.currency.converter.exception.CurrencyConversionException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -25,16 +29,21 @@ public class ExchangeRateClient {
                 .queryParam("from", from)
                 .queryParam("to", to)
                 .queryParam("amount", 1)
-                .queryParam("access_token", apiKey)
-                .build()
                 .toUriString();
 
         try {
-            Map<String, Object> response = restTemplate.getForObject(uri, Map.class);
-            if (response == null || response.get("result") == null) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("apiKey", apiKey);
+            HttpEntity<Void> entity = new HttpEntity<>(headers);
+            ResponseEntity<Map> response = restTemplate.exchange(uri, HttpMethod.GET, entity, Map.class);
+            System.out.println(">>> Raw API response: " + response.getBody());
+
+            Map<String, Object> body = response.getBody();
+
+            if (body == null || body.get("result") == null) {
                 throw new CurrencyConversionException("Invalid response from exchange rate API");
             }
-            return ((Number) response.get("result")).doubleValue();
+            return ((Number) body.get("result")).doubleValue();
         } catch (Exception e) {
             throw new CurrencyConversionException("Failed to fetch exchange rate: " + e.getMessage());
         }
