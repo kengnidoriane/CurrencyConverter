@@ -35,8 +35,6 @@ git clone https://github.com/your-username/currency-converter.git
 cd currency-converter
 ```
 
-Voici une version améliorée et plus claire de la section “Configure the API Key” du README :
-
 ---
 
 ### 2. **Configure the API Key**
