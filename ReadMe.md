@@ -22,7 +22,6 @@ This is a simple Spring Boot REST API that converts currency amounts using real-
 * RestTemplate
 * Swagger (Springdoc OpenAPI)
 * Maven
-* JUnit 5, Mockito (for tests)
 
 ---
 
@@ -31,11 +30,9 @@ This is a simple Spring Boot REST API that converts currency amounts using real-
 ### 1. **Clone the Repository**
 
 ```bash
-git clone https://github.com/your-username/currency-converter.git
-cd currency-converter
+git clone https://github.com/kengnidoriane/CurrencyConverter.git
+cd CurrencyConverter
 ```
-
-Voici une version améliorée et plus claire de la section “Configure the API Key” du README :
 
 ---
 
