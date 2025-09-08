@@ -126,7 +126,7 @@ Content-Type: application/json
   "from": "USD",
   "to": "EUR",
   "amount": 100,
-  "convertedAmount": 92.5
+  "convertedAmount": 95.5
 }
 ```
 
